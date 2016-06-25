@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Light Paste - Error</title>
+    </head>
+    <body>
+        <h1>Error: {{@ERROR.code}} - {{@ERROR.status}}</h1> <br/>
+        <check if="isset({{@error_info}})">
+            <true>
+                {{@error_info}}
+            </true>
+        </check>
+    </body>
+</html>

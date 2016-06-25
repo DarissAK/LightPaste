@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+    <head>
+        <check if="isset({{@page_title}})">
+            <true>
+                <title>Light Paste - {{@page_title}}</title>
+            </true>
+            <false>
+                <title>Light Paste</title>
+            </false>
+        </check>
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="assets/css/codemirror.min.css" />
+        <link rel="stylesheet" href="assets/css/foldgutter.min.css" />
+        <link rel="stylesheet" href="assets/css/themes/{{@site_theme.file}}" />
+        <script src="assets/js/codemirror.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <check if="(isset({{@paste_private}}) and {{@paste_private}} == 1) or (isset({{@paste_snap}}) and {{@paste_snap}} == 1)">
+            <true>
+                <meta name="robots" content="noindex, nofollow">
+            </true>
+        </check>
+    </head>
+    <body>
+        <div id="modal-background">
+            <i class="fa fa-spinner fa-spin fa-5x" id="modal-spinner"></i>
+        </div>
+        <form action="/" method="post" id="paste-form" enctype="multipart/form-data">
+        <div id="panel-top"></div>
+        <div id="panel-bottom"></div>
+        <div id="panel-left"><include href="templates/toolbar.html" /></div>
+        <div id="panel-right"></div>
+        <div id="panel-center">
+            <div class="content" id="settings">
+                <include href="templates/settings.html" />
+            </div>
+            <div class="content" id="about">
+                <include href="templates/about.html" />
+            </div>
+            <check if="isset({{@paste_authed}})">
+                <true>
+                    <check if="isset({{@paste_access_id}})">
+                        <div class="content" id="pasteinfo">
+                            <include href="templates/pasteinfo.html" />
+                        </div>
+                    </check>
+                </true>
+            </check>
+        </div>
+        <check if="isset({{@paste_authed}})">
+            <true>
+                <textarea id="editor" name="text"><check if="isset({{@editor_text}})">{{@editor_text}}</check></textarea>
+                <script type="text/javascript"><include href="js/editor.js" /></script>
+                </form>
+            </true>
+            <false>
+                </form>
+                <div id="password-content">
+                    <div class="content" style="display: block !important; visibility: visible;">
+                        <h3 class="content-header">
+                            Password Required
+                        </h3>
+                        <div class="content-divider"></div>
+                        <form action="/{{@paste_access_id}}/auth" method="post">
+                            <div class="form-row">
+                                <div class="form-cell form-label">Password</div>
+                                <div class="form-cell">
+                                    <input type="password" name="password">
+                                    <input type="submit" value="Submit">
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </false>
+        </check>
+    </body>
+</html>

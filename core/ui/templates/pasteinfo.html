@@ -1,0 +1,60 @@
+<h3 class="content-header">
+    Paste Information
+</h3>
+
+<div class="form-row">
+    <div class="form-cell form-label-color">Access ID</div>
+    <div class="form-cell">{{@paste_access_id}}</div>
+    <div style="clear: both;"></div>
+</div>
+<div class="form-row">
+    <div class="form-cell form-label-color">Post Date</div>
+    <div class="form-cell">{{@paste_date}}</div>
+    <div style="clear: both;"></div>
+</div>
+<div class="form-row">
+    <div class="form-cell form-label-color">Post Time</div>
+    <div class="form-cell">{{@paste_time}}</div>
+    <div style="clear: both;"></div>
+</div>
+<div class="form-row">
+    <div class="form-cell form-label-color">Views</div>
+    <div class="form-cell">{{@paste_views}}</div>
+    <div style="clear: both;"></div>
+</div>
+<div class="form-row">
+    <div class="form-cell form-label-color">Size</div>
+    <div class="form-cell">{{@paste_size}}</div>
+    <div style="clear: both;"></div>
+</div>
+<div class="form-row">
+    <div class="form-cell form-label-color">MD5</div>
+    <div class="form-cell">{{@paste_md5}}</div>
+    <div style="clear: both;"></div>
+</div>
+<div class="form-row">
+    <div class="form-cell form-label-color">SHA1</div>
+    <div class="form-cell">{{@paste_sha1}}</div>
+    <div style="clear: both;"></div>
+</div>
+<div class="form-row">
+    <div class="form-cell form-label-color">Language</div>
+    <div class="form-cell">
+        <check if="{{@paste_language}} != ''">
+            <true>
+                <check if="isset({{@paste_language_website}})">
+                    <true>
+                        <a href="{{@paste_language_website}}">{{@paste_language}}</a>
+                    </true>
+                    <false>
+                        {{@paste_language}}
+                    </false>
+                </check>
+            </true>
+            <false>
+                None
+            </false>
+        </check>
+    </div>
+    <div style="clear: both;"></div>
+</div>

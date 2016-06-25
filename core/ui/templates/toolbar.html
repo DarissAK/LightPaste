@@ -1,0 +1,23 @@
+<div id="logo"><a href="/">LP</a></div>
+<div class="toolbar-divider"></div>
+<check if="isset({{@paste_access_id}})">
+    <true>
+        <a href="/{{@paste_access_id}}/raw" class="button" id="raw-button"><i class="fa fa-fw fa-file-text"></i></a>
+        <a href="/{{@paste_access_id}}/download" class="button" id="download-button"><i class="fa fa-fw fa-download"></i></a>
+        <a href="/{{@paste_access_id}}/copy" class="button" id="copy-button"><i class="fa fa-fw fa-edit"></i></a>
+        <a class="button" id="pasteinfo-button" onclick="toggleContent('pasteinfo')"><i class="fa fa-fw fa-list-alt"></i></a>
+        <div class="toolbar-divider"></div>
+    </true>
+    <false>
+        <a href="#" class="button" id="save-button" onclick="$('#paste-form').submit();"><i class="fa fa-fw fa-save"></i></a>
+    </false>
+</check>
+<a class="button" id="settings-button" onclick="toggleContent('settings')"><i class="fa fa-fw fa-cog"></i></a>
+<a class="button" id="about-button" onclick="toggleContent('about')"><i class="fa fa-fw fa-info-circle"></i></a>
+<div class="tooltip" id="raw-button-tooltip" data-target="raw-button"><div style="display: block;">Raw text</div></div>
+<div class="tooltip" id="download-button-tooltip" data-target="download-button">Download</div>
+<div class="tooltip" id="copy-button-tooltip" data-target="copy-button">Copy and edit</div>
+<div class="tooltip" id="pasteinfo-button-tooltip" data-target="pasteinfo-button">Paste info</div>
+<div class="tooltip" id="settings-button-tooltip" data-target="settings-button">Settings</div>
+<div class="tooltip" id="about-button-tooltip" data-target="about-button">About</div>
+<div class="tooltip" id="save-button-tooltip" data-target="save-button">Save</div>

@@ -1,0 +1,219 @@
+<check if="!isset({{@site_paste_data}})">
+<true>
+
+<check if="!isset({{@paste_access_id}})">
+
+<h3 class="content-header">
+    Paste Options
+</h3>
+
+<div class="form-row">
+    <div class="form-cell form-label">Language</div>
+    <div class="form-cell">
+        <select id="languages" name="language">
+            <option value="none">None</option>
+            <repeat group="{{@site_languages}}" key="{{@k}}" value="{{@v}}">
+                <check if="{{isset(@v[mode_complex])}}">
+                    <true>
+                        <option value="{{@k}}" data-mode="{{@v[mode]}}" data-modecomplex="{{@v[mode_complex]}}">{{@v[name]}}</option>
+                    </true>
+                    <false>
+                        <option value="{{@k}}" data-mode="{{@v[mode]}}">{{@v[name]}}</option>
+                    </false>
+                </check>
+            </repeat>
+        </select>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div class="form-row">
+    <div class="form-cell form-label">Visibility</div>
+    <div class="form-cell">
+        <select id="paste-visibility-selector" name="visibility">
+            <option value="public" selected="selected">Public</option>
+            <option value="private">Private</option>
+        </select>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div class="form-row">
+    <div class="form-cell form-label">Expiration</div>
+    <div class="form-cell">
+        <select id="paste-expiration-selector" name="expiration">
+            <repeat group="{{@site_expirations}}" key="{{@k}}" value="{{@v}}">
+                <check if="{{@PASTE_DEFAULT_EXPIRATION}} != '' and {{@PASTE_DEFAULT_EXPIRATION}} == {{@k}}">
+                    <true>
+                        <option value="{{@k}}" selected="selected">{{@k}}</option>
+                    </true>
+                    <false>
+                        <option value="{{@k}}">{{@k}}</option>
+                    </false>
+                </check>
+            </repeat>
+        </select>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div class="form-row">
+    <div class="form-cell form-label">Snap</div>
+    <div class="form-cell">
+        <select id="paste-snap-selector" name="snap">
+            <option value="true">Yes</option>
+            <option value="false" selected="selected">No</option>
+        </select>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<check if="{{@PASTE_PASSWORD_ENABLED}}">
+<div class="form-row">
+    <div class="form-cell form-label">Password</div>
+    <div class="form-cell">
+        <input type="password" name="password">
+    </div>
+    <div style="clear: both;"></div>
+</div>
+</check>
+
+<check if="{{@SITE_FILE_UPLOAD_ENABLED}}">
+    <true>
+        <div class="form-row">
+            <div class="form-cell form-label">From File</div>
+            <div class="form-cell">
+                <input type="file" name="file" id="paste-file-input">
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </true>
+</check>
+
+</true>
+</check>
+
+</check>
+
+<h3>Editor Settings</h3>
+
+<div class="form-row">
+    <check if="{{ @editor_line_numbers == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="linenumbers_checkbox">
+        </true>
+        <false>
+            <input type="checkbox" id="linenumbers_checkbox">
+        </false>
+    </check>
+    <label for="linenumbers_checkbox">Line numbers</label>
+</div>
+<div class="form-row">
+    <check if="{{ @editor_line_wrapping == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="wordwrap_checkbox" >
+        </true>
+        <false>
+            <input type="checkbox" id="wordwrap_checkbox" >
+        </false>
+    </check>
+    <label for="wordwrap_checkbox">Word wrap</label>
+</div>
+<div class="form-row">
+    <check if="{{ @editor_smart_indent == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="smartindent_checkbox" >
+        </true>
+        <false>
+            <input type="checkbox" id="smartindent_checkbox" >
+        </false>
+    </check>
+    <label for="smartindent_checkbox">Smart indent</label>
+</div>
+<div class="form-row">
+    <check if="{{ @editor_match_brackets == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="matchbrackets_checkbox" >
+        </true>
+        <false>
+            <input type="checkbox" id="matchbrackets_checkbox" >
+        </false>
+    </check>
+    <label for="matchbrackets_checkbox">Match brackets</label>
+</div>
+<div class="form-row">
+    <check if="{{ @editor_match_tags == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="matchtags_checkbox" >
+        </true>
+        <false>
+            <input type="checkbox" id="matchtags_checkbox" >
+        </false>
+    </check>
+    <label for="matchtags_checkbox">Match tags</label>
+</div>
+<div class="form-row">
+    <check if="{{ @editor_highlight_active_line == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="highlight_active_line_checkbox" >
+        </true>
+        <false>
+            <input type="checkbox" id="highlight_active_line_checkbox" >
+        </false>
+    </check>
+    <label for="highlight_active_line_checkbox">Highlight active line</label>
+</div>
+<div class="form-row">
+    <check if="{{ @editor_highlight_occurrences == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="highlight_occurrences_checkbox" >
+        </true>
+        <false>
+            <input type="checkbox" id="highlight_occurrences_checkbox" >
+        </false>
+    </check>
+    <label for="highlight_occurrences_checkbox">Highlight occurrences</label>
+</div>
+<div class="form-row">
+    <check if="{{ @editor_vertical_ruler == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="vertical_ruler_checkbox" >
+        </true>
+        <false>
+            <input type="checkbox" id="vertical_ruler_checkbox" >
+        </false>
+    </check>
+    <label for="vertical_ruler_checkbox">Vertical ruler</label>
+</div>
+<div class="form-row">
+    <check if="{{ @editor_folding == 'true' }}">
+        <true>
+            <input type="checkbox" checked="checked" id="folding_checkbox" >
+        </true>
+        <false>
+            <input type="checkbox" id="folding_checkbox" >
+        </false>
+    </check>
+    <label for="folding_checkbox">Folding</label>
+</div>
+
+<h3>Site Settings</h3>
+
+<div class="form-row">
+    <div class="form-cell form-label">Theme</div>
+    <div class="form-cell">
+        <select id="theme-selector">
+            <repeat group="{{@site_themes}}" key="{{@k}}" value="{{@v}}">
+                <check if="{{@v}} == {{@site_theme}}">
+                    <true>
+                        <option value="{{@k}}" selected="selected">{{@v[name]}}</option>
+                    </true>
+                    <false>
+                        <option value="{{@k}}">{{@v[name]}}</option>
+                    </false>
+                </check>
+            </repeat>
+        </select>
+    </div>
+    <div style="clear: both;"></div>
+</div>
